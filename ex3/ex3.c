@@ -1,28 +1,27 @@
 #include <stdio.h>
 
-#define IN 1
-#define OUT 0
-
 int main()
 {
-    int STATE = OUT;
+    int n_blanks, n_tabs, n_newlines;
+    n_blanks = n_tabs = n_newlines = 0;
     int c;
     while ((c = getchar()) != EOF)
     {
-        if (c == ' ' || c == '\t' || c == '\n')
+        if (c == ' ')
         {
-            STATE = OUT;
+            n_blanks++;
         }
-        else
+        else if (c == '\t')
         {
-            if (STATE == OUT)
-            {
-                STATE = IN;
-                putchar('\n');
-            }
-            putchar(c);
+            n_tabs++;
+        }
+        else if (c == '\n')
+        {
+            n_newlines++;
         }
     }
-
+    printf("\nBlanks: %d", n_blanks);
+    printf("\nTabs: %d", n_tabs);
+    printf("\nNewlines: %d", n_newlines);
     return 0;
 }
